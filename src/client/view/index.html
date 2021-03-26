@@ -4,9 +4,42 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Travel App</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap" rel="stylesheet">
+  <title>Clima Travel</title>
 </head>
 <body>
-  <h1>Hello World</h1>
+  <header>
+    <h1>Clima Travel</h1>
+  </header>
+
+  <form>
+    <div class="input-form">
+      <label for="city">City</label>
+      <input type="text" name="city" id="city" required>
+    </div>
+
+    <div class="input-form">
+      <label for="date">Date</label>
+      <input type="date" name="date" id="date" required>
+    </div>
+    <button>Travel</button>
+  </form>
+
+  <section class="content">
+    <h2>Pernambuco, Brazil</h2>
+
+    <div class="city-information">
+      <div class="currency">Currency: Real</div>
+      <div class="capital">Capital: Brasilia</div>
+      <div class="languages">Languages: Portuguese</div>
+      <div class="population">Population: 37,172,386</div>
+    </div>
+
+    <h2 id="forecast">The forecast is: 35°C</h2>
+
+    <div class="img-city" alt="A img of the city">
+    </div>
+  </section>
 </body>
 </html>
