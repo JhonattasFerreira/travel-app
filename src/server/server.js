@@ -64,3 +64,9 @@ app.post('/postCountryInformation', async(req, res) => {
   const data = await response.json();
   res.send(data);
 });
+
+app.get('/testCity', async (req, res) => {
+  res.json({city: 'Colorado'})
+});
+
+module.exports = app;
