@@ -7,8 +7,10 @@ const cityElement = document.getElementById('city');
 const dateElement = document.getElementById('date');
 const buttonElement = document.getElementById('travel');
 
-const [today] = new Date().toISOString().split('T');
-dateElement.setAttribute('min', today);
+const addDateLimitOnInputDate = () => {
+  const [today] = new Date().toISOString().split('T');
+  dateElement.setAttribute('min', today);
+}
 
 buttonElement.addEventListener('click', (event) => {
   event.preventDefault();
@@ -17,9 +19,7 @@ buttonElement.addEventListener('click', (event) => {
 
   const inputsValidated = Client.isValidInputs(cityElement.value, dateElement.value);
 
-  if(inputsValidated.isValid){
-    console.log('passed')
-
+  if(inputsValidated.isValid) {
     getInformationCity(cityElement.value)
     .then(data => getForecast(data, dateElement.value))
     .then(() => getCountryInformation(countryCod))
@@ -45,7 +45,6 @@ const getInformationCity = async(city) => {
   
   try {
     const data = await response.json();
-    console.log(data);
 
     if(data.geonames.length === 0) {
       throw new Error('The city is incorrect');
@@ -83,7 +82,6 @@ const getForecast = async({lat,lng}, dateValue) => {
   try {
     let temp;
     const dataResponse = await response.json();
-    console.log(dataResponse);
 
     if(dataResponse.error) {
       throw new Error(dataResponse.error);
@@ -102,7 +100,7 @@ const getForecast = async({lat,lng}, dateValue) => {
 
     Client.updateForecastUi(temp);
   } catch (error) {
-    console.log(error)
+    console.log('Error => ',error);
     return error;
   }
 }
@@ -119,7 +117,6 @@ const getImageCity = async(city, country) => {
 
   try {
     const data = await response.json();
-    console.log('image', data);
 
     if(cityName) {
       Client.updateImageUi(data.hits[0])
@@ -127,7 +124,7 @@ const getImageCity = async(city, country) => {
       throw new Error('No image');
     }
   } catch (error) {
-    console.log(error)
+    console.log('Error => ',error);
     return error;
   }
 }
@@ -144,7 +141,6 @@ const getCountryInformation = async(countryCode) => {
 
   try {
     const data = await response.json();
-    console.log(data);
 
     if(data.status === 400) {
       throw new Error(data.message);
@@ -152,7 +148,7 @@ const getCountryInformation = async(countryCode) => {
 
     Client.updateCountryInformation(data);
   } catch (error) {
-    console.log(error)
+    console.log('Error => ',error);
     return error;
   }
 }
@@ -162,3 +158,5 @@ const resetAttributes = () => {
   countryCod = '';
   cityName = '';
 }
+
+export {addDateLimitOnInputDate};
