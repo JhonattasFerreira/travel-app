@@ -14,10 +14,10 @@
     text-decoration: underline;
   }
 
-  .img-city {
-    background-color: red;
+  #img-city {
     width: 85%;
     height: 10em;
+    object-fit: cover;
   }
 }
 
@@ -26,10 +26,10 @@
     width: 50%;
     font-size: 1.3em;
 
-    .img-city {
-      background-color: red;
+    #img-city {
       width: 75%;
       height: 20em;
+      object-fit: cover;
     }
   }
 }
