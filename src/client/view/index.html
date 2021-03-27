@@ -43,5 +43,12 @@
 
     <img id="img-city" alt="A image of the city" />
   </section>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+  </script>
 </body>
 </html>
