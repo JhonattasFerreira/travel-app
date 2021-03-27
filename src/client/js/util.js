@@ -54,4 +54,21 @@ const checkDate = (date) => {
   return messageErrorDate
 }
 
-export {isValidInputs};
+const checkDateForecast = (date) => {
+  let isCurrentForecast = true;
+
+  const sevenDaysFuture = new Date();
+  sevenDaysFuture.setHours(0,0,0,0);
+  sevenDaysFuture.setDate(sevenDaysFuture.getDate() + 6);
+
+  const [year,month,day] = date.split('-')
+  const dateValue = new Date(year,month-1,day);
+
+  if(dateValue > sevenDaysFuture) {
+    isCurrentForecast = false;
+  }
+
+  return isCurrentForecast
+}
+
+export {isValidInputs, checkDateForecast};
